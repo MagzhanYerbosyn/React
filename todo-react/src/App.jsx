@@ -1,8 +1,12 @@
+const userName = 'Magzhan';
+
 const App = () => {
   return (
-    <div>
+    // using <> instead of <div> to return several tags with no additional wrapper
+    <>
       <h1>To Do List</h1>
-    </div>
+      <p>Hi, {userName}!</p>
+    </>
   );
 };
 
