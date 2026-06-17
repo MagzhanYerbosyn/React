@@ -1,5 +1,6 @@
 import AddTaskForm from './components/AddTaskForm';
 import SearchTaskForm from './components/SearchTaskForm';
+import TodoInfo from './components/TodoInfo';
 
 const App = () => {
   return (
@@ -7,14 +8,7 @@ const App = () => {
       <h1 className="todo__title">To Do List</h1>
       <AddTaskForm />
       <SearchTaskForm />
-      <div className="todo__info">
-        <div className="todo__total-tasks">
-          Total tasks: <span>0</span>
-        </div>
-        <button className="todo__delete-all-button" type="button">
-          Delete all
-        </button>
-      </div>
+      <TodoInfo />
       <ul className="todo__list">
         <li className="todo__item todo-item">
           <input className="todo-item__checkbox" id="task-1" type="checkbox" checked />
