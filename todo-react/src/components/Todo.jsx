@@ -25,10 +25,14 @@ const Todo = () => {
     console.log(`Search: ${query}`);
   };
 
+  const addTask = () => {
+    console.log(`Task is added!`);
+  };
+
   return (
     <div className="todo">
       <h1 className="todo__title">To Do List</h1>
-      <AddTaskForm />
+      <AddTaskForm addTask={addTask} />
       <SearchTaskForm onSearchInput={filterTasks} />
       <TodoInfo
         total={tasks.length}
