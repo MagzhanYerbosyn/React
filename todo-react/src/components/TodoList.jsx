@@ -9,7 +9,7 @@ const TodoList = () => {
 
   return (
     <ul className="todo__list">
-      <TodoItem />
+      <TodoItem title="Buy Milk" isDone={false} />
       <li className="todo__item todo-item">
         <input className="todo-item__checkbox" id="task-2" type="checkbox" />
         <label className="todo-item__label" htmlFor="task-2">
