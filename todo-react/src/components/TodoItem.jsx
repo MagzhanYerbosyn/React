@@ -3,7 +3,7 @@ const TodoItem = (props) => {
 
   return (
     <li className={`todo-item ${className}`}>
-      <input className="todo-item__checkbox" id={id} type="checkbox" checked={isDone} />
+      <input className="todo-item__checkbox" id={id} type="checkbox" checked={isDone} readOnly />
 
       <label className="todo-item__label" htmlFor={id}>
         {title}
