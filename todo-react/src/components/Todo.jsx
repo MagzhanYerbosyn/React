@@ -9,13 +9,25 @@ const Todo = () => {
     { id: 'task-2', title: 'Pet dog', isDone: true },
   ];
 
+  const deleteAllTasks = () => {
+    console.log('Deleting all tasks...');
+  };
+
+  const deleteTask = (taskId) => {
+    console.log(`Deleting a task with id: ${taskId}...`);
+  };
+
   return (
     <div className="todo">
       <h1 className="todo__title">To Do List</h1>
       <AddTaskForm />
       <SearchTaskForm />
-      <TodoInfo total={tasks.length} done={tasks.filter(({ isDone }) => isDone).length} />
-      <TodoList tasks={tasks} />
+      <TodoInfo
+        total={tasks.length}
+        done={tasks.filter(({ isDone }) => isDone).length}
+        onDeleteAllButtonClick={deleteAllTasks}
+      />
+      <TodoList tasks={tasks} onDeleteTaskButtonClick={deleteTask} />
     </div>
   );
 };
