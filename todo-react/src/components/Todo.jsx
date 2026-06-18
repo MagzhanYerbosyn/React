@@ -17,6 +17,10 @@ const Todo = () => {
     console.log(`Deleting a task with id: ${taskId}...`);
   };
 
+  const toggleTaskComplete = (taskId, isDone) => {
+    console.log(`Task with id: ${taskId} is ${isDone ? 'complete' : 'not complete'}`);
+  };
+
   return (
     <div className="todo">
       <h1 className="todo__title">To Do List</h1>
@@ -27,7 +31,11 @@ const Todo = () => {
         done={tasks.filter(({ isDone }) => isDone).length}
         onDeleteAllButtonClick={deleteAllTasks}
       />
-      <TodoList tasks={tasks} onDeleteTaskButtonClick={deleteTask} />
+      <TodoList
+        tasks={tasks}
+        onDeleteTaskButtonClick={deleteTask}
+        onTaskCompleteChange={toggleTaskComplete}
+      />
     </div>
   );
 };
