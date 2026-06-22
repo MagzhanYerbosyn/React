@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import SearchTaskForm from './SearchTaskForm';
 import TodoInfo from './TodoInfo';
@@ -19,6 +19,8 @@ const Todo = () => {
   });
 
   const [newTaskTitle, setNewTaskTitle] = useState('');
+
+  const newTaskInputRef = useRef(null);
 
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -57,6 +59,7 @@ const Todo = () => {
       setTasks([...tasks, newTask]);
       setNewTaskTitle('');
       setSearchQuery('');
+      newTaskInputRef.current.focus();
     }
   };
 
@@ -64,6 +67,10 @@ const Todo = () => {
     console.log(`Saving data into a storage, because tasks have been changed: `, tasks);
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
+
+  useEffect(() => {
+    newTaskInputRef.current.focus();
+  }, []);
 
   const clearSearchQuery = searchQuery.trim().toLowerCase();
   const filteredTasks =
@@ -78,6 +85,7 @@ const Todo = () => {
         addTask={addTask}
         newTaskTitle={newTaskTitle}
         setNewTaskTitle={setNewTaskTitle}
+        newTaskInputRef={newTaskInputRef}
       />
       <SearchTaskForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <TodoInfo
