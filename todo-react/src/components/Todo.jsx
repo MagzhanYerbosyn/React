@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import AddTaskForm from './AddTaskForm';
+import Button from './Button';
 import SearchTaskForm from './SearchTaskForm';
 import TodoInfo from './TodoInfo';
 import TodoList from './TodoList';
@@ -19,10 +20,11 @@ const Todo = () => {
   });
 
   const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const newTaskInputRef = useRef(null);
-
-  const [searchQuery, setSearchQuery] = useState('');
+  const firstIncompleteTaskRef = useRef(null);
+  const firstIncompleteTaskId = tasks.find((task) => !task.isDone)?.id;
 
   const deleteAllTasks = () => {
     const isConfirmed = confirm('Are you sure you want to delete all tasks?');
@@ -93,9 +95,16 @@ const Todo = () => {
         done={tasks.filter(({ isDone }) => isDone).length}
         onDeleteAllButtonClick={deleteAllTasks}
       />
+      <Button
+        onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({ behavior: 'smooth' })}
+      >
+        Show first incomplete task
+      </Button>
       <TodoList
         tasks={tasks}
         filteredTasks={filteredTasks}
+        firstIncompleteTaskId={firstIncompleteTaskId}
+        firstIncompleteTaskRef={firstIncompleteTaskRef}
         onDeleteTaskButtonClick={deleteTask}
         onTaskCompleteChange={toggleTaskComplete}
       />

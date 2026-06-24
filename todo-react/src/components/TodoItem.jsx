@@ -4,6 +4,7 @@ const TodoItem = (props) => {
     id,
     title,
     isDone,
+    ref,
     onDeleteTaskButtonClick,
     onTaskCompleteChange,
   } = props;
@@ -13,6 +14,7 @@ const TodoItem = (props) => {
       <input
         className="todo-item__checkbox"
         id={id}
+        ref={ref}
         type="checkbox"
         checked={isDone}
         onChange={(event) => {
