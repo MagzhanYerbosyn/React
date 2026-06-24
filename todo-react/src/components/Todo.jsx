@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { TasksContext } from '../context/TasksContext';
 import AddTaskForm from './AddTaskForm';
 import Button from './Button';
 import SearchTaskForm from './SearchTaskForm';
@@ -83,34 +84,39 @@ const Todo = () => {
       : null;
 
   return (
-    <div className="todo">
-      <h1 className="todo__title">To Do List</h1>
-      <AddTaskForm
-        addTask={addTask}
-        newTaskTitle={newTaskTitle}
-        setNewTaskTitle={setNewTaskTitle}
-        newTaskInputRef={newTaskInputRef}
-      />
-      <SearchTaskForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <TodoInfo
-        total={tasks.length}
-        done={tasks.filter(({ isDone }) => isDone).length}
-        onDeleteAllButtonClick={deleteAllTasks}
-      />
-      <Button
-        onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({ behavior: 'smooth' })}
-      >
-        Show first incomplete task
-      </Button>
-      <TodoList
-        tasks={tasks}
-        filteredTasks={filteredTasks}
-        firstIncompleteTaskId={firstIncompleteTaskId}
-        firstIncompleteTaskRef={firstIncompleteTaskRef}
-        onDeleteTaskButtonClick={deleteTask}
-        onTaskCompleteChange={toggleTaskComplete}
-      />
-    </div>
+    <TasksContext.Provider
+      value={{
+        tasks,
+        filteredTasks,
+        firstIncompleteTaskRef,
+        firstIncompleteTaskId,
+        deleteTask,
+        deleteAllTasks,
+        toggleTaskComplete,
+      }}
+    >
+      <div className="todo">
+        <h1 className="todo__title">To Do List</h1>
+        <AddTaskForm
+          addTask={addTask}
+          newTaskTitle={newTaskTitle}
+          setNewTaskTitle={setNewTaskTitle}
+          newTaskInputRef={newTaskInputRef}
+        />
+        <SearchTaskForm searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
+        <TodoInfo
+          total={tasks.length}
+          done={tasks.filter(({ isDone }) => isDone).length}
+          onDeleteAllButtonClick={deleteAllTasks}
+        />
+        <Button
+          onClick={() => firstIncompleteTaskRef.current?.scrollIntoView({ behavior: 'smooth' })}
+        >
+          Show first incomplete task
+        </Button>
+        <TodoList />
+      </div>
+    </TasksContext.Provider>
   );
 };
 
