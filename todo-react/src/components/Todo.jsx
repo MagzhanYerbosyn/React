@@ -7,8 +7,6 @@ import TodoInfo from './TodoInfo';
 import TodoList from './TodoList';
 
 const Todo = () => {
-  console.log('Todo');
-
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
 
