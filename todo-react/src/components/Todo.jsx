@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import AddTaskForm from './AddTaskForm';
 import Button from './Button';
 import SearchTaskForm from './SearchTaskForm';
@@ -6,6 +6,8 @@ import TodoInfo from './TodoInfo';
 import TodoList from './TodoList';
 
 const Todo = () => {
+  console.log('Todo');
+
   const [tasks, setTasks] = useState(() => {
     const savedTasks = localStorage.getItem('tasks');
 
@@ -26,13 +28,13 @@ const Todo = () => {
   const firstIncompleteTaskRef = useRef(null);
   const firstIncompleteTaskId = tasks.find((task) => !task.isDone)?.id;
 
-  const deleteAllTasks = () => {
+  const deleteAllTasks = useCallback(() => {
     const isConfirmed = confirm('Are you sure you want to delete all tasks?');
 
     if (isConfirmed) {
       setTasks([]);
     }
-  };
+  }, []);
 
   const deleteTask = (taskId) => {
     setTasks(tasks.filter((task) => task.id !== taskId));
