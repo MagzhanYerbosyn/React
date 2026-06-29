@@ -1,0 +1,12 @@
+.app-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  min-width: 100vw;
+  min-height: 100vh;
+
+  background: no-repeat center/100% 100%
+    url('https://img.magnific.com/free-photo/perfect-green-grass_1122-632.jpg?semt=ais_hybrid&w=740&q=80');
+}
