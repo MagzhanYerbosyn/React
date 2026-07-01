@@ -1,0 +1,21 @@
+.to-do-header {
+  margin-bottom: 32px;
+
+  & .to-do-header__title {
+    margin-bottom: 8px;
+
+    font-family: 'Poppins';
+    font-size: 36px;
+    line-height: 40px;
+    font-weight: 800;
+    color: #181b20ff;
+  }
+
+  & .to-do-header__paragraph {
+    font-family: 'Inter';
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: #555d6dff;
+  }
+}

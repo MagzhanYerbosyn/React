@@ -1,0 +1,9 @@
+.to-do-body {
+  padding: 32px;
+
+  background: #ffffffff;
+  border-radius: 12px;
+  box-shadow:
+    0px 8px 16px #2e313812,
+    0px 0px 0px #171a1f00;
+}
