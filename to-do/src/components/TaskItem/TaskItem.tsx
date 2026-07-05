@@ -1,7 +1,11 @@
 import type { TTaskItem } from '../../shared/types/TTaskItem';
 import './TaskItem.css';
 
-const TaskItem = ({ id, taskContent, checkType }: TTaskItem) => {
+type TDeleteTaskItem = TTaskItem & {
+  deleteTaskHandler: (id: string) => void;
+};
+
+const TaskItem = ({ id, taskContent, checkType, deleteTaskHandler }: TDeleteTaskItem) => {
   return (
     <li className="task-item">
       <input className="task-item__checkbox" id={`${id}`} type="checkbox" checked={checkType} />
@@ -10,7 +14,12 @@ const TaskItem = ({ id, taskContent, checkType }: TTaskItem) => {
         {taskContent}
       </label>
 
-      <button className="task-item__delete-button" aria-label="Delete" title="Delete">
+      <button
+        className="task-item__delete-button"
+        aria-label="Delete"
+        title="Delete"
+        onClick={() => deleteTaskHandler(id)}
+      >
         <svg
           width="20"
           height="20"

@@ -6,10 +6,7 @@ import type { TTaskItem } from '../../shared/types/TTaskItem';
 import './ToDoForm.css';
 
 const ToDoForm = () => {
-  const [tasks, setTasks] = useState<TTaskItem[]>([
-    { id: crypto?.randomUUID(), taskContent: 'New Task', checkType: false },
-    { id: crypto?.randomUUID(), taskContent: 'New Task', checkType: false },
-  ]);
+  const [tasks, setTasks] = useState<TTaskItem[]>([]);
 
   const [newTaskTitle, setNewTaskTitle] = useState<string>('');
 
@@ -18,6 +15,12 @@ const ToDoForm = () => {
 
     setTasks((prevTask) => [...prevTask, newTask]);
     setNewTaskTitle('');
+  };
+
+  const deleteTaskHandler = (id: string) => {
+    const filteredTasks = tasks.filter((task) => task.id !== id);
+
+    setTasks(filteredTasks);
   };
 
   return (
@@ -42,7 +45,7 @@ const ToDoForm = () => {
       >
         <AddTask newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} />
         <TaskSummary />
-        <ActiveTasks tasks={tasks} />
+        <ActiveTasks tasks={tasks} deleteTaskHandler={deleteTaskHandler} />
       </form>
       {/* TODO BODY */}
     </div>

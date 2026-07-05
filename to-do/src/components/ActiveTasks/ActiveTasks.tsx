@@ -3,7 +3,12 @@ import type { TTaskItem } from '../../shared/types/TTaskItem';
 import TaskItem from '../TaskItem/TaskItem';
 import './ActiveTasks.css';
 
-const ActiveTasks = ({ tasks }: { tasks: TTaskItem[] }) => {
+interface IActiveTasks {
+  tasks: TTaskItem[];
+  deleteTaskHandler(id: string): void;
+}
+
+const ActiveTasks = ({ tasks, deleteTaskHandler }: IActiveTasks) => {
   return (
     <div className="active-tasks">
       <div className="active-tasks__header">
@@ -12,7 +17,7 @@ const ActiveTasks = ({ tasks }: { tasks: TTaskItem[] }) => {
       </div>
       <ul className="active-tasks__list">
         {tasks.map((task) => (
-          <TaskItem key={task.id} {...task} />
+          <TaskItem key={task.id} deleteTaskHandler={deleteTaskHandler} {...task} />
         ))}
       </ul>
     </div>
