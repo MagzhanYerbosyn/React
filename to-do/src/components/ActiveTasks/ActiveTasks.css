@@ -1,0 +1,31 @@
+.active-tasks__header {
+  margin-bottom: 18px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  & img {
+    width: 12px;
+    height: 12px;
+
+    filter: brightness(0) saturate(100%) invert(27%) sepia(99%) saturate(3785%) hue-rotate(199deg)
+      brightness(99%) contrast(95%);
+  }
+
+  & h6 {
+    font-family: 'Poppins';
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #555d6dff;
+  }
+}
+
+.active-tasks__list {
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+}

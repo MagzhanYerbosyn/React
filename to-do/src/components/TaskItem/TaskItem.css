@@ -1,0 +1,90 @@
+.task-item {
+  padding: 12px;
+
+  display: flex;
+  align-items: center;
+}
+
+.task-item__checkbox {
+  flex-shrink: 0;
+  appearance: none;
+  position: relative;
+
+  width: 20px;
+  height: 20px;
+
+  margin: 0;
+
+  border: 1px solid #565e6cff;
+  border-radius: 4px;
+
+  &:checked {
+    background-color: rgb(68, 68, 68);
+    border-color: rgb(68, 68, 68);
+
+    & + .task-item__label {
+      color: #565e6cff;
+      text-decoration: line-through;
+    }
+  }
+
+  &:not(:checked) {
+    &::after {
+      opacity: 0;
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 16px;
+    height: 16px;
+    background: url('../../../../../../assets/icon-check_white.svg') center/contain no-repeat;
+  }
+}
+
+.task-item__label {
+  margin-left: 14px;
+
+  font-family: 'Inter';
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 500;
+  color: #181b20ff;
+}
+
+.task-item__delete-button {
+  width: 33px;
+  height: 33px;
+
+  flex-shrink: 0;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  margin-left: auto;
+  padding: 0;
+
+  color: #565e6cff;
+  background-color: transparent;
+
+  border: none;
+  border-radius: inherit;
+
+  &:hover {
+    color: white;
+    background-color: rgb(68, 68, 68);
+    border-radius: 5px;
+  }
+
+  &:active {
+    scale: 1.05;
+  }
+
+  * {
+    pointer-events: none;
+  }
+}

@@ -1,4 +1,4 @@
-import SummaryCard from './SummaryCard/SummaryCard';
+import SummaryCard from '../SummaryCard/SummaryCard';
 import './TaskSummary.css';
 
 const TaskSummary = () => {
