@@ -3,6 +3,11 @@
 
   display: flex;
   align-items: center;
+
+  &:hover {
+    background: #eeeeee94;
+    border-radius: 12px;
+  }
 }
 
 .task-item__checkbox {
