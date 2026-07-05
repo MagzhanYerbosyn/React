@@ -1,12 +1,17 @@
 import SummaryCard from '../SummaryCard/SummaryCard';
 import './TaskSummary.css';
 
-const TaskSummary = () => {
+type ITaskSummary = {
+  total: number;
+  completed: number;
+};
+
+const TaskSummary = ({ total, completed }: ITaskSummary) => {
   return (
     <div className="task-summary">
-      <SummaryCard stat={5} statName="total tasks" />
-      <SummaryCard stat={3} statName="pending" pending />
-      <SummaryCard stat={2} statName="completed" />
+      <SummaryCard stat={total} statName="total tasks" />
+      <SummaryCard stat={total - completed} statName="pending" pending />
+      <SummaryCard stat={completed} statName="completed" />
     </div>
   );
 };

@@ -56,7 +56,10 @@ const ToDoForm = () => {
         }}
       >
         <AddTask newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} />
-        <TaskSummary />
+        <TaskSummary
+          total={tasks.length}
+          completed={tasks.filter((task) => task.checkType === true).length}
+        />
         <ActiveTasks
           tasks={tasks}
           deleteTaskHandler={deleteTaskHandler}
