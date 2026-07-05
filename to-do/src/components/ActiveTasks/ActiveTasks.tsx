@@ -26,6 +26,7 @@ const ActiveTasks = ({ tasks, deleteTaskHandler, changeTaskStatusHandler }: IAct
           />
         ))}
       </ul>
+      {tasks.length === 0 && <div className="active-tasks__empty">No tasks was added yet</div>}
     </div>
   );
 };
