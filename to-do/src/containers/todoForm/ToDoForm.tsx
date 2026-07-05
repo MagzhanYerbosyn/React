@@ -23,6 +23,18 @@ const ToDoForm = () => {
     setTasks(filteredTasks);
   };
 
+  const changeTaskStatusHandler = (id: string) => {
+    const filteredTasks = tasks.map((task) => {
+      if (task.id === id) {
+        task.checkType = !task.checkType;
+      }
+
+      return task;
+    });
+
+    setTasks(filteredTasks);
+  };
+
   return (
     <div className="to-do-form">
       {/* TODO HEADER */}
@@ -45,7 +57,11 @@ const ToDoForm = () => {
       >
         <AddTask newTaskTitle={newTaskTitle} setNewTaskTitle={setNewTaskTitle} />
         <TaskSummary />
-        <ActiveTasks tasks={tasks} deleteTaskHandler={deleteTaskHandler} />
+        <ActiveTasks
+          tasks={tasks}
+          deleteTaskHandler={deleteTaskHandler}
+          changeTaskStatusHandler={changeTaskStatusHandler}
+        />
       </form>
       {/* TODO BODY */}
     </div>

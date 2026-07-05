@@ -3,12 +3,27 @@ import './TaskItem.css';
 
 type TDeleteTaskItem = TTaskItem & {
   deleteTaskHandler: (id: string) => void;
+  changeTaskStatusHandler: (id: string) => void;
 };
 
-const TaskItem = ({ id, taskContent, checkType, deleteTaskHandler }: TDeleteTaskItem) => {
+const TaskItem = ({
+  id,
+  taskContent,
+  checkType,
+  deleteTaskHandler,
+  changeTaskStatusHandler,
+}: TDeleteTaskItem) => {
   return (
     <li className="task-item">
-      <input className="task-item__checkbox" id={`${id}`} type="checkbox" checked={checkType} />
+      <input
+        className="task-item__checkbox"
+        id={id}
+        type="checkbox"
+        checked={checkType}
+        onChange={() => {
+          changeTaskStatusHandler(id);
+        }}
+      />
 
       <label className="task-item__label" htmlFor={`${id}`}>
         {taskContent}

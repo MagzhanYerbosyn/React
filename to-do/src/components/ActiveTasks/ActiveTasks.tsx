@@ -6,9 +6,10 @@ import './ActiveTasks.css';
 interface IActiveTasks {
   tasks: TTaskItem[];
   deleteTaskHandler(id: string): void;
+  changeTaskStatusHandler(id: string): void;
 }
 
-const ActiveTasks = ({ tasks, deleteTaskHandler }: IActiveTasks) => {
+const ActiveTasks = ({ tasks, deleteTaskHandler, changeTaskStatusHandler }: IActiveTasks) => {
   return (
     <div className="active-tasks">
       <div className="active-tasks__header">
@@ -17,7 +18,12 @@ const ActiveTasks = ({ tasks, deleteTaskHandler }: IActiveTasks) => {
       </div>
       <ul className="active-tasks__list">
         {tasks.map((task) => (
-          <TaskItem key={task.id} deleteTaskHandler={deleteTaskHandler} {...task} />
+          <TaskItem
+            key={task.id}
+            deleteTaskHandler={deleteTaskHandler}
+            changeTaskStatusHandler={changeTaskStatusHandler}
+            {...task}
+          />
         ))}
       </ul>
     </div>
