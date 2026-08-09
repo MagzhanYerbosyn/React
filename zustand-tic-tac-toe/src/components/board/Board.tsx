@@ -1,37 +1,19 @@
 import { useMemo } from 'react';
-import { create } from 'zustand';
-import { combine } from 'zustand/middleware';
 import { calculateStatus, calculateTurns, calculateWinner } from '../../common/helpers';
 import type { TSquaresState } from '../../common/types/TSquaresState';
 import Square from '../square/Square';
 
-const useGameStore = create(
-  combine({ squares: Array(9).fill(null) as TSquaresState, xIsNext: true }, (set) => {
-    return {
-      setSquares: (nextSquares: TSquaresState | ((prev: TSquaresState) => TSquaresState)) => {
-        set((state) => ({
-          squares: typeof nextSquares === 'function' ? nextSquares(state.squares) : nextSquares,
-        }));
-      },
-      setXIsNext: (nextXIsNext: boolean | ((prev: boolean) => boolean)) => {
-        set((state) => ({
-          xIsNext: typeof nextXIsNext === 'function' ? nextXIsNext(state.xIsNext) : nextXIsNext,
-        }));
-      },
-    };
-  })
-);
+interface IProps {
+  xIsNext: boolean;
+  squares: TSquaresState;
+  onPlay: (squares: TSquaresState) => void;
+}
 
-function Board() {
-  const squares = useGameStore((state) => state.squares);
-  const setSquares = useGameStore((state) => state.setSquares);
-  const xIsNext = useGameStore((state) => state.xIsNext);
-  const setXIsNext = useGameStore((state) => state.setXIsNext);
-
-  const player = useMemo(() => (xIsNext ? 'X' : 'O'), [xIsNext]);
-
+function Board({ xIsNext, squares, onPlay }: IProps) {
   const winner = calculateWinner(squares);
   const turns = calculateTurns(squares);
+  const player = useMemo(() => (xIsNext ? 'X' : 'O'), [xIsNext]);
+
   const status = calculateStatus(winner, turns, player);
 
   function handleClick(index: number) {
@@ -40,8 +22,7 @@ function Board() {
     const nextSquares = squares.slice();
     nextSquares[index] = player;
 
-    setSquares(nextSquares);
-    setXIsNext(!xIsNext);
+    onPlay(nextSquares);
   }
 
   return (
