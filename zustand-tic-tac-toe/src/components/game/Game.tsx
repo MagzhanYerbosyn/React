@@ -8,8 +8,8 @@ function Game() {
   const setHistory = useGameStore((state) => state.setHistory);
   const currentMove = useGameStore((state) => state.currentMove);
   const setCurrentMove = useGameStore((state) => state.setCurrentMove);
-  const xIsNext = useGameStore((state) => state.xIsNext);
-  const setXIsNext = useGameStore((state) => state.setXIsNext);
+
+  const xIsNext = currentMove % 2 === 0;
 
   const currentSquares = useMemo(() => {
     return history[currentMove];
@@ -19,12 +19,10 @@ function Game() {
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
     setHistory(nextHistory);
     setCurrentMove(nextHistory.length - 1);
-    setXIsNext(!xIsNext);
   }
 
   function jumpTo(nextMove: number) {
     setCurrentMove(nextMove);
-    setXIsNext(nextMove % 2 === 0);
   }
 
   return (

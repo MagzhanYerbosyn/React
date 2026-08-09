@@ -5,13 +5,11 @@ import type { TSquaresState } from '../types/TSquaresState';
 interface IInitialState {
   history: TSquaresState[];
   currentMove: number;
-  xIsNext: boolean;
 }
 
 const initialState: IInitialState = {
   history: [Array(9).fill(null)],
   currentMove: 0,
-  xIsNext: true,
 };
 
 export const useGameStore = create(
@@ -28,11 +26,6 @@ export const useGameStore = create(
             typeof nextCurrentMove === 'function'
               ? nextCurrentMove(state.currentMove)
               : nextCurrentMove,
-        }));
-      },
-      setXIsNext: (nextXIsNext: boolean | ((prev: boolean) => boolean)) => {
-        set((state) => ({
-          xIsNext: typeof nextXIsNext === 'function' ? nextXIsNext(state.xIsNext) : nextXIsNext,
         }));
       },
     };
