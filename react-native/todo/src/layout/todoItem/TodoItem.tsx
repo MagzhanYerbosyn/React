@@ -15,7 +15,10 @@ const TodoItem = ({ text, isCompleted }: ITodoItemProps) => {
       <StyledText style={[{ textDecorationLine: isCompleted ? 'line-through' : 'none' }]}>
         {text}
       </StyledText>
-      <StyledButton label="Delete" />
+      <View style={styles.controlContainer}>
+        <StyledButton icon="pencil" />
+        <StyledButton icon="trash" />
+      </View>
     </View>
   );
 };
@@ -28,6 +31,12 @@ const styles = StyleSheet.create({
     padding: 15,
     marginVertical: 8,
     backgroundColor: COLORS.SECONDARY_BACKGROUND,
+  },
+  controlContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 10,
   },
 });
 

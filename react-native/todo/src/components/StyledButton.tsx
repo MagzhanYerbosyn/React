@@ -1,15 +1,18 @@
 import { COLORS } from '@/constants/ui';
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, TouchableOpacity, TouchableOpacityProps } from 'react-native';
 import StyledText from './StyledText';
 
 type TStyledButtonProps = TouchableOpacityProps & {
   label?: string;
+  icon?: React.ComponentProps<typeof Ionicons>['name'];
 };
 
-const StyledButton = ({ label, ...props }: TStyledButtonProps) => {
+const StyledButton = ({ label, icon, ...props }: TStyledButtonProps) => {
   return (
     <TouchableOpacity {...props} style={styles.base}>
+      {icon && <Ionicons name={icon} size={14} color={COLORS.PRIMARY_TEXT} />}
       {label && <StyledText>{label}</StyledText>}
     </TouchableOpacity>
   );
