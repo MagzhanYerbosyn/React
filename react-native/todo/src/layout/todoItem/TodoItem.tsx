@@ -1,3 +1,4 @@
+import StyledButton from '@/components/StyledButton';
 import StyledText from '@/components/StyledText';
 import { COLORS } from '@/constants/ui';
 import React from 'react';
@@ -11,7 +12,10 @@ interface ITodoItemProps {
 const TodoItem = ({ text, isCompleted }: ITodoItemProps) => {
   return (
     <View style={styles.container}>
-      <StyledText>{text}</StyledText>
+      <StyledText style={[{ textDecorationLine: isCompleted ? 'line-through' : 'none' }]}>
+        {text}
+      </StyledText>
+      <StyledButton label="Delete" />
     </View>
   );
 };
