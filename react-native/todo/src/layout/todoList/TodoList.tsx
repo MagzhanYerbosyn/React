@@ -1,6 +1,6 @@
 import { ITodo } from '@/types/todo';
 import React from 'react';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import TodoItem from '../todoItem/TodoItem';
 
 type TTodoListProps = {
@@ -18,7 +18,5 @@ function TodoList({ todos }: TTodoListProps) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({});
 
 export default TodoList;
