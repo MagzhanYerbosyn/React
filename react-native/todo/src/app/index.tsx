@@ -9,7 +9,7 @@ const defaultTodoList: ITodo[] = [
   {
     id: 1,
     text: 'Buy cream milk',
-    isCompleted: false,
+    isCompleted: true,
   },
   {
     id: 2,
@@ -26,10 +26,19 @@ const defaultTodoList: ITodo[] = [
 export default function Index() {
   const [todoList, setTodoList] = useState<ITodo[]>(defaultTodoList);
 
+  const totalTasks = todoList.length;
+  const completedTasks = todoList.reduce((sum, task) => {
+    if (task.isCompleted) {
+      return sum + 1;
+    }
+
+    return sum;
+  }, 0);
+
   return (
     <View style={styles.container}>
       <StatusBar barStyle={'light-content'} />
-      <Header />
+      <Header totalTasks={totalTasks} completedTasks={completedTasks} />
       <TodoList todos={todoList} />
     </View>
   );

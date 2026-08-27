@@ -3,21 +3,27 @@ import { COLORS } from '@/constants/ui';
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-export default function Header() {
+type THeaderProps = {
+  totalTasks: number;
+  completedTasks: number;
+};
+
+function Header({ totalTasks, completedTasks }: THeaderProps) {
   return (
     <View style={styles.container}>
       <View style={styles.headerMainContent}>
         <StyledText>Todo app</StyledText>
         <StyledText>August 27, 2026</StyledText>
       </View>
-      <StyledText>Completed: 0/0</StyledText>
+      <StyledText>
+        Completed: {completedTasks}/{totalTasks}
+      </StyledText>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     paddingTop: 80,
     paddingBottom: 15,
     paddingHorizontal: 20,
@@ -30,3 +36,5 @@ const styles = StyleSheet.create({
     gap: 5,
   },
 });
+
+export default Header;

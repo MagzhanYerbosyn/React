@@ -2,15 +2,15 @@ import StyledText from '@/components/StyledText';
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-interface ITodoProps {
+interface ITodoItemProps {
   text: string;
   isCompleted: boolean;
 }
 
-const Todo = ({ text, isCompleted }: ITodoProps) => {
+const TodoItem = ({ text, isCompleted }: ITodoItemProps) => {
   return <StyledText>{text}</StyledText>;
 };
 
 const styles = StyleSheet.create({});
 
-export default Todo;
+export default TodoItem;

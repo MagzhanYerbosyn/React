@@ -1,7 +1,7 @@
 import { ITodo } from '@/types/todo';
 import React from 'react';
 import { FlatList, StyleSheet, View } from 'react-native';
-import Todo from '../todo/Todo';
+import TodoItem from '../todoItem/TodoItem';
 
 type TTodoListProps = {
   todos: ITodo[];
@@ -13,7 +13,7 @@ function TodoList({ todos }: TTodoListProps) {
       <FlatList
         data={todos}
         keyExtractor={(todo) => todo.id.toString()}
-        renderItem={({ item }) => <Todo text={item.text} isCompleted={item.isCompleted} />}
+        renderItem={({ item }) => <TodoItem text={item.text} isCompleted={item.isCompleted} />}
       />
     </View>
   );
