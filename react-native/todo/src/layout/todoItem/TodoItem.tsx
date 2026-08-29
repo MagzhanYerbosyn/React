@@ -17,7 +17,7 @@ const TodoItem = ({ text, isCompleted }: ITodoItemProps) => {
       </StyledText>
       <View style={styles.controlContainer}>
         <StyledButton icon="pencil" />
-        <StyledButton icon="trash" />
+        <StyledButton icon="trash" variant="danger" />
       </View>
     </View>
   );
