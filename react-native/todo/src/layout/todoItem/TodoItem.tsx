@@ -1,7 +1,8 @@
 import StyledButton from '@/components/StyledButton';
+import StyledCheckbox from '@/components/StyledCheckbox';
 import StyledText from '@/components/StyledText';
 import { COLORS } from '@/constants/ui';
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 interface ITodoItemProps {
@@ -10,11 +11,16 @@ interface ITodoItemProps {
 }
 
 const TodoItem = ({ text, isCompleted }: ITodoItemProps) => {
+  const [checked, setChecked] = useState(false);
+
   return (
     <View style={styles.container}>
-      <StyledText style={[{ textDecorationLine: isCompleted ? 'line-through' : 'none' }]}>
-        {text}
-      </StyledText>
+      <View style={styles.checkboxContainer}>
+        <StyledCheckbox checked={checked} onCheck={() => setChecked(!checked)} />
+        <StyledText style={[{ textDecorationLine: isCompleted ? 'line-through' : 'none' }]}>
+          {text}
+        </StyledText>
+      </View>
       <View style={styles.controlContainer}>
         <StyledButton icon="pencil" />
         <StyledButton icon="trash" variant="danger" />
@@ -36,6 +42,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    gap: 10,
+  },
+  checkboxContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
     gap: 10,
   },
 });
