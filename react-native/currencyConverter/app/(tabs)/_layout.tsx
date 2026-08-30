@@ -1,28 +1,28 @@
-import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Tabs } from 'expo-router';
+import { Calculator, CirclePlus, Star } from 'lucide-react-native';
 
 function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: 'blue' }}>
+    <Tabs screenOptions={{ tabBarActiveTintColor: '#2563EBFF' }}>
       <Tabs.Screen
         name="index"
         options={{
           title: 'Dashboard',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="dashboard" color={color} />,
+          tabBarIcon: ({ color }) => <Calculator size={28} color={color} />,
         }}
       />
       <Tabs.Screen
         name="add"
         options={{
           title: 'Add',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="plus" color={color} />,
+          tabBarIcon: ({ color }) => <CirclePlus size={28} color={color} />,
         }}
       />
       <Tabs.Screen
         name="favorites"
         options={{
           title: 'Favorites',
-          tabBarIcon: ({ color }) => <FontAwesome size={28} name="star" color={color} />,
+          tabBarIcon: ({ color }) => <Star size={28} color={color} />,
         }}
       />
     </Tabs>
