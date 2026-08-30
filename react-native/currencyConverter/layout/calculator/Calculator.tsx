@@ -1,7 +1,7 @@
 import Card from '@/components/Card';
 import StyledText from '@/components/StyledText';
 import { COLORS } from '@/constants/ui';
-import { ArrowLeftRight } from 'lucide-react-native';
+import { ArrowLeftRight, DollarSign, Euro } from 'lucide-react-native';
 import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
@@ -12,7 +12,7 @@ const Calculator = () => {
     <View style={styles.container}>
       <View style={styles.calculatorHeader}>
         <View style={styles.infoContainer}>
-          <StyledText>FROM</StyledText>
+          <StyledText style={styles.title}>from</StyledText>
           <Card title="USD" text="US Dollar" style={styles.cardContainer} />
         </View>
         <Pressable
@@ -23,8 +23,27 @@ const Calculator = () => {
           <ArrowLeftRight color={COLORS.PRIMARY} />
         </Pressable>
         <View style={styles.infoContainer}>
-          <StyledText>TO</StyledText>
+          <StyledText style={styles.title}>to</StyledText>
           <Card title="EUR" text="Euro" style={styles.cardContainer} />
+        </View>
+      </View>
+      <View style={styles.calculatorDisplay}>
+        <View style={styles.displayLegend}>
+          <StyledText style={styles.title}>amount</StyledText>
+          <StyledText style={[styles.title, styles.highlight]}>1 usd = 0.92 eur</StyledText>
+        </View>
+        <View style={styles.currencyCard}>
+          <View style={styles.currencyCardRow}>
+            <DollarSign />
+            <StyledText style={styles.currencyText}>1,000</StyledText>
+          </View>
+          <View style={styles.divider} />
+          <View style={styles.currencyCardRow}>
+            <Euro color={COLORS.PRIMARY} />
+            <StyledText style={[styles.currencyText, { fontSize: 24, color: COLORS.PRIMARY }]}>
+              920.00
+            </StyledText>
+          </View>
         </View>
       </View>
     </View>
@@ -44,6 +63,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'flex-end',
   },
+  calculatorDisplay: {
+    marginTop: 24,
+    gap: 12,
+  },
   infoContainer: {
     gap: 8,
   },
@@ -55,6 +78,40 @@ const styles = StyleSheet.create({
   },
   swapPressed: {
     opacity: 0.5,
+  },
+  displayLegend: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  currencyCard: {
+    padding: 17,
+    flexDirection: 'column',
+    gap: 15,
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: COLORS.BORDER,
+    backgroundColor: COLORS.SECONDARY_BG,
+  },
+  currencyCardRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  currencyText: {
+    fontSize: 30,
+    lineHeight: 36,
+    fontWeight: 700,
+  },
+  title: {
+    fontWeight: 500,
+    textTransform: 'uppercase',
+  },
+  highlight: {
+    color: COLORS.PRIMARY,
+  },
+  divider: {
+    height: 1,
+    backgroundColor: COLORS.BORDER,
   },
 });
 
