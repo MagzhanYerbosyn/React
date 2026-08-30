@@ -11,6 +11,9 @@ const StyledText = ({ logo, style, ...props }: TProps) => {
 };
 
 const styles = StyleSheet.create({
+  base: {
+    color: COLORS.PRIMARY_TEXT,
+  },
   logo: {
     fontSize: 18,
     lineHeight: 28,
