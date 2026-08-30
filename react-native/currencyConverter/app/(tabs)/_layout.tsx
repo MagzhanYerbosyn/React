@@ -1,9 +1,16 @@
+import { COLORS } from '@/constants/ui';
+import Header from '@/layout/header/Header';
 import { Tabs } from 'expo-router';
 import { Calculator, CirclePlus, Star } from 'lucide-react-native';
 
 function TabLayout() {
   return (
-    <Tabs screenOptions={{ tabBarActiveTintColor: '#2563EBFF' }}>
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: COLORS.PRIMARY,
+        header: () => <Header />,
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
