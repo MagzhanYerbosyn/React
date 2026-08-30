@@ -2,10 +2,12 @@ import Card from '@/components/Card';
 import StyledText from '@/components/StyledText';
 import { COLORS } from '@/constants/ui';
 import { ArrowLeftRight } from 'lucide-react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 const Calculator = () => {
+  const [isSwapPressed, setIsSwapPressed] = useState(false);
+
   return (
     <View style={styles.container}>
       <View style={styles.calculatorHeader}>
@@ -13,7 +15,11 @@ const Calculator = () => {
           <StyledText>FROM</StyledText>
           <Card title="USD" text="US Dollar" style={styles.cardContainer} />
         </View>
-        <Pressable style={styles.swapContainer}>
+        <Pressable
+          style={[styles.swapContainer, isSwapPressed && styles.swapPressed]}
+          onPressIn={() => setIsSwapPressed(true)}
+          onPressOut={() => setIsSwapPressed(false)}
+        >
           <ArrowLeftRight color={COLORS.PRIMARY} />
         </Pressable>
         <View style={styles.infoContainer}>
@@ -46,6 +52,9 @@ const styles = StyleSheet.create({
   },
   swapContainer: {
     marginBottom: 18,
+  },
+  swapPressed: {
+    opacity: 0.5,
   },
 });
 
