@@ -1,3 +1,4 @@
+import Header from '@/layout/Header';
 import { Tabs } from 'expo-router';
 import { Bookmark, Clapperboard, Home } from 'lucide-react-native';
 
@@ -6,7 +7,7 @@ function TabLayout() {
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: 'black',
-        headerShown: false,
+        header: () => <Header />,
       }}
     >
       <Tabs.Screen
