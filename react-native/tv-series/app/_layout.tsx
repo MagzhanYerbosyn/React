@@ -1,6 +1,7 @@
 import { focusManager, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Stack } from 'expo-router';
-import { AppStateStatus, Platform } from 'react-native';
+import { useEffect } from 'react';
+import { AppState, AppStateStatus, Platform } from 'react-native';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,6 +19,11 @@ function onAppStateChange(status: AppStateStatus) {
 }
 
 export default function RootLayout() {
+  useEffect(() => {
+    const subscription = AppState.addEventListener('change', onAppStateChange);
+    return () => subscription.remove();
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <Stack screenOptions={{ headerShown: false }}>
