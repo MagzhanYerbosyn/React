@@ -6,7 +6,7 @@ function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'black',
+        tabBarActiveTintColor: '#00a6f4',
         header: () => <Header />,
       }}
     >
@@ -20,7 +20,7 @@ function TabLayout() {
       <Tabs.Screen
         name="shows"
         options={{
-          title: 'SearchShows',
+          title: 'Shows',
           tabBarIcon: ({ color }) => <Clapperboard size={28} color={color} />,
         }}
       />
