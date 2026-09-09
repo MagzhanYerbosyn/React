@@ -1,58 +1,13 @@
-import { useSearchById } from '@/hooks/useSearch';
-import { router, useLocalSearchParams } from 'expo-router';
-import { Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import ShowCard from '@/components/ShowCard';
+import { useLocalSearchParams } from 'expo-router';
+import { ScrollView, StyleSheet } from 'react-native';
 
 export default function SearchedShowScreen() {
   const { showId } = useLocalSearchParams<{ showId: string }>();
 
-  const { data } = useSearchById(showId);
-
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.card}>
-        <View style={styles.imageWrapper}>
-          <Text style={styles.mainTitle}>{data?.name}</Text>
-          {data?.image.original ? (
-            <Image
-              source={{
-                uri: data?.image.original,
-              }}
-              style={styles.image}
-            />
-          ) : (
-            <Text>No poster available</Text>
-          )}
-        </View>
-        <View style={styles.descriptionWrapper}>
-          <View style={styles.descriptionRow}>
-            <Text style={styles.descriptionTitle}>Premiered:</Text>
-            <Text style={styles.descriptionSubTitle}>{data?.premiered.split('-')[0]}</Text>
-          </View>
-          <View style={styles.descriptionRow}>
-            <Text style={styles.descriptionTitle}>Genres:</Text>
-            <Text style={styles.descriptionSubTitle}>{data?.genres.join(', ')}</Text>
-          </View>
-          <View style={styles.descriptionRow}>
-            <Text style={styles.descriptionTitle}>Status:</Text>
-            <Text style={styles.descriptionSubTitle}>{data?.status}</Text>
-          </View>
-          <View style={styles.descriptionRow}>
-            <Text style={styles.descriptionSubTitle}>
-              {data?.summary ? data?.summary.slice(3, data.summary.length - 4) : 'No description'}
-            </Text>
-          </View>
-          <Pressable
-            style={({ pressed }) => [styles.button, pressed && styles.buttonHover]}
-            onPress={() =>
-              router.push({
-                pathname: '/favorites',
-              })
-            }
-          >
-            <Text style={styles.buttonText}>Add to Favorites</Text>
-          </Pressable>
-        </View>
-      </View>
+      <ShowCard id={showId} />
     </ScrollView>
   );
 }
