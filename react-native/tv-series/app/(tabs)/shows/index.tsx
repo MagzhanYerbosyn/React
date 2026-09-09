@@ -22,19 +22,19 @@ export default function ShowsScreen() {
         <FlatList
           data={data}
           keyExtractor={(item) => item.show.id.toString()}
-          renderItem={(item) => (
+          renderItem={({ item }) => (
             <Pressable
               style={({ pressed }) => [pressed && { opacity: 0.8 }]}
               onPress={() => {
                 router.push({
                   pathname: '/(tabs)/shows/[showId]',
-                  params: { showId: item.item.show.id },
+                  params: { showId: item.show.id },
                 });
                 setSearchInput('');
               }}
             >
               <View style={styles.card}>
-                <Text style={styles.cardText}>{item.item.show.name}</Text>
+                <Text style={styles.cardText}>{item.show.name}</Text>
               </View>
             </Pressable>
           )}
@@ -68,9 +68,7 @@ const styles = StyleSheet.create({
   },
   cardsList: {
     padding: 8,
-    backgroundColor: '#d1d5dc',
-    borderWidth: 1,
-    borderColor: '#8a8989',
+    backgroundColor: '#ffffff',
     borderRadius: 15,
   },
   card: {

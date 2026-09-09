@@ -13,6 +13,5 @@ export const useSearchById = (showId: string) => {
   return useQuery({
     queryKey: ['show', showId],
     queryFn: () => searchService.getSearchResultsById(showId),
-    enabled: showId.trim().length > 0,
   });
 };
