@@ -2,12 +2,16 @@ import { StyleSheet, Text, View } from 'react-native';
 
 export default function SearchedShowScreen() {
   return (
-    <View style={style.container}>
+    <View style={styles.container}>
       <Text>Searched Show Appears here!</Text>
     </View>
   );
 }
 
-const style = StyleSheet.create({
-  container: {},
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });

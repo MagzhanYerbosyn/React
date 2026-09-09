@@ -1,17 +1,25 @@
 import { Tabs } from 'expo-router';
-import { Bookmark, Clapperboard } from 'lucide-react-native';
+import { Bookmark, Clapperboard, Home } from 'lucide-react-native';
 
 function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: 'black',
+        headerShown: false,
       }}
     >
       <Tabs.Screen
+        name="index"
+        options={{
+          title: 'Home',
+          tabBarIcon: ({ color }) => <Home size={28} color={color} />,
+        }}
+      />
+      <Tabs.Screen
         name="shows"
         options={{
-          title: 'Search Shows',
+          title: 'SearchShows',
           tabBarIcon: ({ color }) => <Clapperboard size={28} color={color} />,
         }}
       />
