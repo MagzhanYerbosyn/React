@@ -1,7 +1,14 @@
-export default function RootLayout({ children }: LayoutProps<'/'>) {
+import { AppSidebar } from '@/components/app-sidebar';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
+
+export default function RootLayout({ children }: LayoutProps<'/quotes'>) {
   return (
-    <div className="h-full antialiased">
-      <div className="min-h-full flex flex-col">{children}</div>
-    </div>
+    <SidebarProvider>
+      <AppSidebar />
+      <main className="w-full p-4">
+        <SidebarTrigger />
+        {children}
+      </main>
+    </SidebarProvider>
   );
 }
